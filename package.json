@@ -2,14 +2,14 @@
   "name": "pomodoro",
   "displayName": "Pomodoro",
   "description": "A time management tool. Uses a timer to break down work into intervals (pomodoros, 25 minutes) separated by short breaks (5 minutes), 4 pomodoros (a set) are separated by long breaks (15 minutes)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "cosminalco",
   "bugs": {
     "url": "https://github.com/cosminalco/pomodoro-vscode/issues"
   },
   "repository": {
-      "type": "git",
-      "url": "https://github.com/cosminalco/pomodoro-vscode.git"
+    "type": "git",
+    "url": "https://github.com/cosminalco/pomodoro-vscode.git"
   },
   "homepage": "https://github.com/cosminalco/pomodoro-vscode/blob/master/README.md",
   "engines": {
@@ -18,14 +18,14 @@
   "categories": [
     "Other"
   ],
-	"keywords": [
-		"timer",
+  "keywords": [
+    "timer",
     "productivity",
     "time management",
     "pomodoro",
     "timeboxing",
-		"multi-root ready"
-	],
+    "multi-root ready"
+  ],
   "activationEvents": [
     "*"
   ],
