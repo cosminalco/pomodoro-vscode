@@ -1,7 +1,7 @@
 {
   "name": "pomodoro",
   "displayName": "Pomodoro",
-  "description": "A time management tool. Uses a timer to break down work into intervals (pomodoros, 25 minutes) separated by short breaks (5 minutes), 4 pomodoros (a set) are separated by long breaks (15 minutes)",
+  "description": "A time management method. Uses a timer to break down work into intervals (pomodoros) of 25 minutes separated by short breaks of 5 minutes, 4 pomodoros (sets) are separated by long breaks of 15 minutes",
   "version": "1.0.1",
   "publisher": "cosminalco",
   "bugs": {

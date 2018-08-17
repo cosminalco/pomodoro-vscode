@@ -6,9 +6,9 @@ This was fun. My first VSCode extension and Git repository. This is my version o
 
 ## Features
 
-Breaks down work into intervals (pomodoros) of 25 minutes separated by short breaks of 5 minutes, 4 pomodoros (a set) are separated by long breaks of 15 minutes. 
+Breaks down work into intervals (pomodoros) of 25 minutes separated by short breaks of 5 minutes, 4 pomodoros (sets) are separated by long breaks of 15 minutes. 
 
-After you start Pomodoro (Command Palette: Pomodoro Start/Pause) you will have in statusbar `🍅 Work 1/1 25:00` :
+After you start Pomodoro (Command Palette: Pomodoro Start/Pause) you will have in statusbar `🍅 Work 1/1 25:00`:
 * `🍅` : the unicode character for tomato
 * `Work` : you are in the middle of a pomodoro
 * `1/1` : pomodoro 1 in set 1
