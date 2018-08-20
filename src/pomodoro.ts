@@ -112,10 +112,10 @@ export class Pomodoro {
       }
       this.vsCodeStatusBar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment[this.make.statusbar.alignment === 'left' ? 'Left' : 'Right'], this.make.statusbar.priority)
       this.vsCodeStatusBar.command = 'extension.pomodoroStartPause'
+      this.textStatusBar()
+      this.textTooltip()
+      this.vsCodeStatusBar.show()
     }
-    this.textStatusBar()
-    this.textTooltip()
-    this.vsCodeStatusBar.show()
     this.autoStart = config.autoStart
   }
   tick(): void {
