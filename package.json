@@ -1,0 +1,183 @@
+{
+  "name": "pomodoro",
+  "displayName": "Pomodoro",
+  "description": "A time management method. Uses a timer to break down work into intervals (pomodoros) of 25 minutes separated by short breaks of 5 minutes, 4 pomodoros (sets) are separated by long breaks of 15 minutes",
+  "version": "1.0.3",
+  "publisher": "cosminalco",
+  "bugs": {
+    "url": "https://github.com/cosminalco/pomodoro-vscode/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cosminalco/pomodoro-vscode.git"
+  },
+  "homepage": "https://github.com/cosminalco/pomodoro-vscode/blob/master/README.md",
+  "engines": {
+    "vscode": "^1.25.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "timer",
+    "productivity",
+    "time management",
+    "pomodoro",
+    "timeboxing",
+    "multi-root ready"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension",
+  "icon": "images/icon.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.pomodoroStartPause",
+        "title": "Pomodoro Start/Pause"
+      },
+      {
+        "command": "extension.pomodoroReset",
+        "title": "Pomodoro Reset"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Pomodoro",
+      "properties": {
+        "pomodoro.make": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "notification": {
+                  "type": "boolean",
+                  "default": true,
+                  "description": "Display notifications"
+                },
+                "statusbar": {
+                  "type": [
+                    "object",
+                    "null"
+                  ],
+                  "properties": {
+                    "alignment": {
+                      "type": "string",
+                      "enum": [
+                        "right",
+                        "left"
+                      ],
+                      "default": "right",
+                      "description": "Left or right side of the statusbar"
+                    },
+                    "priority": {
+                      "type": "number",
+                      "default": 1000,
+                      "description": "How far on the left or right on the status bar, depends on the values of other extensions"
+                    }
+                  },
+                  "default": {
+                    "alignment": "right",
+                    "priority": 1000
+                  },
+                  "description": "Statusbar item"
+                }
+              }
+            }
+          ],
+          "default": {
+            "notification": true,
+            "statusbar": {
+              "alignment": "right",
+              "priority": 1000
+            }
+          },
+          "description": "Create notifications a statusbar item or both. Disables notifications with `notification:false`. Disable statusbar with `statusbar:null`"
+        },
+        "pomodoro.texts": {
+          "anyOf": [
+            {
+              "type": "object",
+              "properties": {
+                "notification": {
+                  "type": "string",
+                  "default": "🍅",
+                  "description": "Text for notifications"
+                },
+                "statusbar": {
+                  "type": "string",
+                  "default": "🍅",
+                  "description": "Text for statusbar"
+                },
+                "tooltip": {
+                  "type": "string",
+                  "default": "🍅",
+                  "description": "Text for tooltips"
+                }
+              }
+            }
+          ],
+          "default": {
+            "notification": "Pomodoro %started{%work{Work}%break{Break}%longBreak{Long Break}}%paused{Paused}%reset{Reset}",
+            "statusbar": "🍅%paused{ /* }%work{ Work  %task/%set %minute:%second}%break{ Break  %task/%set %minute:%second}%longBreak{ Long Break  %task/%set %minute:%second}%paused{ */}",
+            "tooltip": "Pomodoro %started{Pause}%paused{Resume}%reset{Start}"
+          },
+          "description": "The texts displayed. Available placeholders with their outputs (you can see in the default values how they work):\n%work{Work} -> 'Work' \n%break{Break} -> 'Break'\n%repeat -> 4\n%longBreak{Long Break} -> 'Long Break'\n%started{Started} -> 'Started'\n%paused{Paused} -> 'Paused'\n%reset{Reset} -> 'Reset'\n%task -> '1,2,3,4,1,2...'\ntasksLeft -> '4,3,2,1,4,3...'\n%set -> '1,2,3,4,5,6...'\n%hour -> '01,00,23,22...'\n%minute -> '01,00,59,58...'\n%second -> '01,00,59,58...'"
+        },
+        "pomodoro.work": {
+          "type": "number",
+          "default": 25,
+          "description": "Time of a pomodoro"
+        },
+        "pomodoro.break": {
+          "type": "number",
+          "default": 5,
+          "description": "Time of break between pomodoros"
+        },
+        "pomodoro.repeat": {
+          "type": "number",
+          "default": 4,
+          "description": "How many pomodoros in a set"
+        },
+        "pomodoro.longBreak": {
+          "type": "number",
+          "default": 15,
+          "description": "Time of break between sets"
+        },
+        "pomodoro.autoStart": {
+          "type": "boolean",
+          "default": false,
+          "description": "Auto start on VSCode startup"
+        },
+        "pomodoro.filePath": {
+          "type": "string",
+          "default": "",
+          "description": "Send changed state `{ repeat: number, task: number, set: number, is: string, active: string }` to your file `module.exports = state => console.log(state)`"
+        },
+        "pomodoro.interval": {
+          "type": "string",
+          "enum": [
+            "minutes",
+            "seconds"
+          ],
+          "default": "minutes",
+          "description": "The values of pomodoro.work, pomodoro.break and pomodoro.lonBreak in minutes or seconds. More for testing purposes, wait 25 seconds instead of 25 minutes to see how the extension works."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^2.6.1",
+    "vscode": "^1.1.6",
+    "@types/node": "^7.0.43",
+    "@types/mocha": "^2.2.42"
+  }
+}
