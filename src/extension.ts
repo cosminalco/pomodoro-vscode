@@ -2,7 +2,6 @@
 import * as vscode from 'vscode'
 import { Pomodoro } from './pomodoro'
 export function activate(context: vscode.ExtensionContext) {
-
   const pomodoro = new Pomodoro(context)
   const startPause = vscode.commands.registerCommand('extension.pomodoroStartPause', () => pomodoro.startPause())
   const reset = vscode.commands.registerCommand('extension.pomodoroReset', () => pomodoro.reset())
