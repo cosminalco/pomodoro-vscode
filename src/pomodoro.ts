@@ -1,5 +1,6 @@
 'use strict'
 import * as vscode from 'vscode'
+import { Sound } from './sound'
 export class Pomodoro {
   second = 1000 
   minOrSec = 60
@@ -171,6 +172,7 @@ export class Pomodoro {
   }
   textNotification(): void {
     if (!this.make.notification) return
+    new Sound(this.is).play();
     vscode.window.showInformationMessage(this.reg(this.texts.notification))
   }
   reg(text: string): string {
